@@ -1,0 +1,34 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels;
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="/favicon.ico">
+    <title>Index</title>
+    <style>
+        [v-cloak] {
+            opacity: 0;
+        }
+    </style>
+
+    <link href="/Assets/css/index.css" rel="stylesheet">
+</head>
+<body v-cloak>
+    @await Html.PartialAsync("Nav")
+
+    <main-base>
+         @RenderBody()
+    </main-base>
+
+    <script type="text/javascript" src="/Assets/js/chunk-vendors.js"></script>
+    <script type="text/javascript" src="/Assets/js/index.js"></script>
+</body>
+</html>
+

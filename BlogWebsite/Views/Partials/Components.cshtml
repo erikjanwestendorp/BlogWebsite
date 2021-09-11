@@ -1,0 +1,12 @@
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<Umbraco.Cms.Core.Models.Blocks.BlockListModel>
+@{
+    if (!Model.Any()) { return; }
+
+    foreach (var component in Model.Where(x => ((IComponentComposition)x.Content).IsComposedOf(ComponentComposition.ModelTypeAlias) && ((IComponentComposition)x.Content).Active))
+    {
+        if (component?.ContentUdi == null) { continue; }
+        var data = component.Content;
+
+        @await Html.PartialAsync("Components/" + data.ContentType.Alias.Replace("Component", ""), component)
+    }
+}
