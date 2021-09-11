@@ -1,17 +1,28 @@
 {
-  "name": "blogwebsite.frontend",
+  "name": "blogwebsite",
   "version": "0.1.0",
   "private": true,
+  "config": {
+    "root": "../Novaware.VanAarsen.Website/Assets"
+  },
   "scripts": {
+    "trash": "trash %npm_package_config_root%/**",
+    "copy": "copyfiles -u 1 \"./dist/**/*\" %npm_package_config_root%",
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "build": "vue-cli-service build && npm run trash && npm run copy",
+    "lint": "vue-cli-service lint",
+    "start": "npm run serve"
   },
   "dependencies": {
+    "axios": "^0.21.1",
+    "bootstrap-reboot": "^4.5.6",
     "core-js": "^3.6.5",
-    "vue": "^3.0.0"
+    "lodash": "^4.17.21",
+    "vue": "^3.1.5"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/lodash": "^4.14.171",
     "@typescript-eslint/eslint-plugin": "^4.18.0",
     "@typescript-eslint/parser": "^4.18.0",
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -20,10 +31,17 @@
     "@vue/cli-service": "~4.5.0",
     "@vue/compiler-sfc": "^3.0.0",
     "@vue/eslint-config-typescript": "^7.0.0",
+    "copyfiles": "^2.4.1",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^7.0.0",
-    "sass": "^1.26.5",
-    "sass-loader": "^8.0.2",
-    "typescript": "~4.1.5"
+    "nunjucks": "^3.2.3",
+    "sass": "^1.32.12",
+    "sass-loader": "^10.1.1",
+    "simple-nunjucks-loader": "^2.0.3",
+    "svgo": "^2.3.1",
+    "svgo-loader": "^3.0.0",
+    "trash-cli": "^4.0.0",
+    "typescript": "~4.1.5",
+    "vue-cli-plugin-svg-sprite": "^1.1.0"
   }
 }
