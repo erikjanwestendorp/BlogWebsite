@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "config": {
-    "root": "../Novaware.VanAarsen.Website/Assets"
+    "root": "../BlogWebsite/Assets"
   },
   "scripts": {
     "trash": "trash %npm_package_config_root%/**",
