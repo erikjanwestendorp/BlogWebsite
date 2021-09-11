@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "config": {
-    "root": "../BlogWebsite/Assets"
+    "root": "../BlogWebsite/wwwroot/Assets"
   },
   "scripts": {
     "trash": "trash %npm_package_config_root%/**",
