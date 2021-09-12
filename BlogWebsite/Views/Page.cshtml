@@ -1,0 +1,13 @@
+﻿@using Umbraco.Cms.Web.Common.PublishedModels
+@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage<ContentPage>
+@{
+    Layout = "Main.cshtml";
+}
+
+@if (Model is IComponentsComposition componentsComposition)
+{
+    if (componentsComposition.Components != null && componentsComposition.Components.Any())
+    {
+        @await Html.PartialAsync("~/Views/Partials/Components.cshtml", componentsComposition.Components)
+    }
+}
