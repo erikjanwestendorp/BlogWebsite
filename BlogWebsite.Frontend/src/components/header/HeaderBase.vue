@@ -19,6 +19,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.default {
+.header {
 }
 </style>
