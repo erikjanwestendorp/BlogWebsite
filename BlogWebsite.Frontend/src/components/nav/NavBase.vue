@@ -1,6 +1,6 @@
 <template>
   <nav class="nav">
-    <ul>
+    <ul class="nav-list">
       <slot></slot>
     </ul>
   </nav>
@@ -14,6 +14,18 @@ export default defineComponent({
 </script>
 <style lang="scss">
 .nav {
-    
+  position: relative;
+  top: 0;
+  right: 0;
+  width: 100%;
+  background-color: fff;
+  height: 56px;
+  z-index: 100;
+  font-family: 'Montserrat';
+}
+
+.nav-list{
+  text-align: right;
+  list-style: none;
 }
 </style>

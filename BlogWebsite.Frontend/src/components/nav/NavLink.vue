@@ -1,5 +1,5 @@
 <template>
-  <li class="link">
+  <li class="nav-item">
       <a :href="url">{{name}}</a>
   </li>
 </template>
@@ -17,6 +17,10 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.default {
+.nav-item {
+  float: right;
+  padding: 0;
+  margin-left: 20px;
+  text-transform: uppercase;
 }
 </style>
