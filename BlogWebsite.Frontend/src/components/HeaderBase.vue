@@ -1,7 +1,7 @@
 <template>
   <div class="header">
       <h1 v-if="title">{{title}}</h1>
-      <img v-if="url" :src="url" :alt="alt">
+      <img v-if="imageUrl" :src="imageUrl" :alt="imageAlt">
   </div>
 </template>
 <script lang="ts">
@@ -10,8 +10,8 @@ export default defineComponent({
 
   props:{
       title: String,
-      url: String,
-      alt: String,
+      imageUrl: String,
+      imageAlt: String,
   },
   setup() {
   }
