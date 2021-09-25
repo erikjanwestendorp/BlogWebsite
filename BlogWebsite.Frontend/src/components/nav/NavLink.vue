@@ -1,6 +1,6 @@
 <template>
-  <li class="link">
-      <a :href="url">{{name}}</a>
+  <li class="nav-item">
+      <a :href="url" :target="target">{{name}}</a>
   </li>
 </template>
 
@@ -8,8 +8,9 @@
 import { defineComponent } from "vue";
 export default defineComponent({
   props:{
-      url: String,
       name: String,
+      url: String,
+      target: String,
   },
   setup() {
   }
@@ -17,6 +18,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.default {
-}
+
 </style>

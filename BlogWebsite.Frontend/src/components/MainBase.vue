@@ -13,6 +13,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.default {
+.main {
 }
 </style>
