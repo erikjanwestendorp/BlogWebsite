@@ -17,10 +17,5 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.nav-item {
-  float: right;
-  padding: 0;
-  margin-left: 20px;
-  text-transform: uppercase;
-}
+
 </style>
