@@ -16,32 +16,46 @@ using Umbraco.Cms.Infrastructure.ModelsBuilder;
 using Umbraco.Cms.Core;
 using Umbraco.Extensions;
 
-namespace Umbraco.Cms.Web.Common.PublishedModels
+namespace BlogWebsite.Data.Models.ModelsBuilder
 {
-	/// <summary>Article</summary>
-	[PublishedModel("umbracoMediaArticle")]
-	public partial class UmbracoMediaArticle : PublishedContentModel
+	// Mixin Content Type with alias "componentComposition"
+	/// <summary>_Component</summary>
+	public partial interface IComponentComposition : IPublishedElement
+	{
+		/// <summary>Actief</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.0.0-rc003+36582f2cd2c6ddc797c85dac0a9a6572126bf602")]
+		bool Active { get; }
+
+		/// <summary>Anchor</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.0.0-rc003+36582f2cd2c6ddc797c85dac0a9a6572126bf602")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		string Anchor { get; }
+	}
+
+	/// <summary>_Component</summary>
+	[PublishedModel("componentComposition")]
+	public partial class ComponentComposition : PublishedElementModel, IComponentComposition
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.0.0-rc003+36582f2cd2c6ddc797c85dac0a9a6572126bf602")]
-		public new const string ModelTypeAlias = "umbracoMediaArticle";
+		public new const string ModelTypeAlias = "componentComposition";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.0.0-rc003+36582f2cd2c6ddc797c85dac0a9a6572126bf602")]
-		public new const PublishedItemType ModelItemType = PublishedItemType.Media;
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.0.0-rc003+36582f2cd2c6ddc797c85dac0a9a6572126bf602")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		public new static IPublishedContentType GetModelContentType(IPublishedSnapshotAccessor publishedSnapshotAccessor)
 			=> PublishedModelUtility.GetModelContentType(publishedSnapshotAccessor, ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.0.0-rc003+36582f2cd2c6ddc797c85dac0a9a6572126bf602")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<UmbracoMediaArticle, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<ComponentComposition, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(publishedSnapshotAccessor), selector);
 #pragma warning restore 0109
 
 		private IPublishedValueFallback _publishedValueFallback;
 
 		// ctor
-		public UmbracoMediaArticle(IPublishedContent content, IPublishedValueFallback publishedValueFallback)
+		public ComponentComposition(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
 			: base(content, publishedValueFallback)
 		{
 			_publishedValueFallback = publishedValueFallback;
@@ -50,26 +64,27 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		// properties
 
 		///<summary>
-		/// Size: in bytes
+		/// Actief: Geef aan of dit component actief moet zijn.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.0.0-rc003+36582f2cd2c6ddc797c85dac0a9a6572126bf602")]
-		[ImplementPropertyType("umbracoBytes")]
-		public virtual long UmbracoBytes => this.Value<long>(_publishedValueFallback, "umbracoBytes");
+		[ImplementPropertyType("active")]
+		public virtual bool Active => GetActive(this, _publishedValueFallback);
+
+		/// <summary>Static getter for Actief</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.0.0-rc003+36582f2cd2c6ddc797c85dac0a9a6572126bf602")]
+		public static bool GetActive(IComponentComposition that, IPublishedValueFallback publishedValueFallback) => that.Value<bool>(publishedValueFallback, "active");
 
 		///<summary>
-		/// Type
+		/// Anchor: Optioneel. Gebruik dit veld om een anchorpunt op dit component toe te voegen. Vanuit een link kan met behulp van de #-notatie worden verwezen naar dit component. Moet uniek zijn op een pagina.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.0.0-rc003+36582f2cd2c6ddc797c85dac0a9a6572126bf602")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("umbracoExtension")]
-		public virtual string UmbracoExtension => this.Value<string>(_publishedValueFallback, "umbracoExtension");
+		[ImplementPropertyType("anchor")]
+		public virtual string Anchor => GetAnchor(this, _publishedValueFallback);
 
-		///<summary>
-		/// Article
-		///</summary>
+		/// <summary>Static getter for Anchor</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.0.0-rc003+36582f2cd2c6ddc797c85dac0a9a6572126bf602")]
-		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("umbracoFile")]
-		public virtual string UmbracoFile => this.Value<string>(_publishedValueFallback, "umbracoFile");
+		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		public static string GetAnchor(IComponentComposition that, IPublishedValueFallback publishedValueFallback) => that.Value<string>(publishedValueFallback, "anchor");
 	}
 }

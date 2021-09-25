@@ -1,7 +1,6 @@
-﻿@using Umbraco.Cms.Web.Common.PublishedModels;
-@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
+﻿@inherits Umbraco.Cms.Web.Common.Views.UmbracoViewPage
 @{
-	Layout = null;
+    Layout = null;
 }
 
 <!DOCTYPE html>
@@ -21,10 +20,10 @@
     <link href="/Assets/css/index.css" rel="stylesheet">
 </head>
 <body v-cloak>
-    @await Html.PartialAsync("Nav")
+    @(await Component.InvokeAsync("Navigation"))
 
     <main-base>
-         @RenderBody()
+        @RenderBody()
     </main-base>
 
     <script type="text/javascript" src="/Assets/js/chunk-vendors.js"></script>

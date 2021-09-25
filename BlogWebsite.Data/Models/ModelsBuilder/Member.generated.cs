@@ -16,7 +16,7 @@ using Umbraco.Cms.Infrastructure.ModelsBuilder;
 using Umbraco.Cms.Core;
 using Umbraco.Extensions;
 
-namespace Umbraco.Cms.Web.Common.PublishedModels
+namespace BlogWebsite.Data.Models.ModelsBuilder
 {
 	/// <summary>Member</summary>
 	[PublishedModel("Member")]

@@ -16,32 +16,32 @@ using Umbraco.Cms.Infrastructure.ModelsBuilder;
 using Umbraco.Cms.Core;
 using Umbraco.Extensions;
 
-namespace Umbraco.Cms.Web.Common.PublishedModels
+namespace BlogWebsite.Data.Models.ModelsBuilder
 {
-	/// <summary>Menu</summary>
-	[PublishedModel("menu")]
-	public partial class Menu : PublishedContentModel
+	/// <summary>Folder</summary>
+	[PublishedModel("Folder")]
+	public partial class Folder : PublishedContentModel
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.0.0-rc003+36582f2cd2c6ddc797c85dac0a9a6572126bf602")]
-		public new const string ModelTypeAlias = "menu";
+		public new const string ModelTypeAlias = "Folder";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.0.0-rc003+36582f2cd2c6ddc797c85dac0a9a6572126bf602")]
-		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+		public new const PublishedItemType ModelItemType = PublishedItemType.Media;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.0.0-rc003+36582f2cd2c6ddc797c85dac0a9a6572126bf602")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		public new static IPublishedContentType GetModelContentType(IPublishedSnapshotAccessor publishedSnapshotAccessor)
 			=> PublishedModelUtility.GetModelContentType(publishedSnapshotAccessor, ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.0.0-rc003+36582f2cd2c6ddc797c85dac0a9a6572126bf602")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<Menu, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<Folder, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(publishedSnapshotAccessor), selector);
 #pragma warning restore 0109
 
 		private IPublishedValueFallback _publishedValueFallback;
 
 		// ctor
-		public Menu(IPublishedContent content, IPublishedValueFallback publishedValueFallback)
+		public Folder(IPublishedContent content, IPublishedValueFallback publishedValueFallback)
 			: base(content, publishedValueFallback)
 		{
 			_publishedValueFallback = publishedValueFallback;
