@@ -16,7 +16,7 @@ using Umbraco.Cms.Infrastructure.ModelsBuilder;
 using Umbraco.Cms.Core;
 using Umbraco.Extensions;
 
-namespace Umbraco.Cms.Web.Common.PublishedModels
+namespace BlogWebsite.Data.Models.ModelsBuilder
 {
 	/// <summary>Home</summary>
 	[PublishedModel("home")]
@@ -54,13 +54,13 @@ namespace Umbraco.Cms.Web.Common.PublishedModels
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.0.0-rc003+36582f2cd2c6ddc797c85dac0a9a6572126bf602")]
 		[ImplementPropertyType("components")]
-		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Components => global::Umbraco.Cms.Web.Common.PublishedModels.ComponentsComposition.GetComponents(this, _publishedValueFallback);
+		public virtual global::Umbraco.Cms.Core.Models.Blocks.BlockListModel Components => global::BlogWebsite.Data.Models.ModelsBuilder.ComponentsComposition.GetComponents(this, _publishedValueFallback);
 
 		///<summary>
 		/// Titel
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.0.0-rc003+36582f2cd2c6ddc797c85dac0a9a6572126bf602")]
 		[ImplementPropertyType("titel")]
-		public virtual string Titel => global::Umbraco.Cms.Web.Common.PublishedModels.PageComposition.GetTitel(this, _publishedValueFallback);
+		public virtual string Titel => global::BlogWebsite.Data.Models.ModelsBuilder.PageComposition.GetTitel(this, _publishedValueFallback);
 	}
 }

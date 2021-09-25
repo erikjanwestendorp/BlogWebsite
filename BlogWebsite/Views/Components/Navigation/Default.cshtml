@@ -1,0 +1,12 @@
+﻿@using Umbraco.Cms.Core.Models;
+@model BlogWebsite.Business.Features.Shared.Components.Navigation.NavigationViewModel
+
+<nav-base>
+    @foreach (var item in Model.Items)
+    {
+        if (item.Page is Link link && !string.IsNullOrEmpty(link.Url) && !string.IsNullOrEmpty(link.Name))
+        {
+            <nav-link name="@link.Name" url="@link.Url" target="@link.Target"></nav-link>
+        }
+    }
+</nav-base>

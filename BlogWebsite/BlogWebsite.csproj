@@ -13,8 +13,6 @@
         <PackageReference Include="Umbraco.SqlServerCE" Version="4.0.0.1" />
     </ItemGroup>
 
-
-
     <ItemGroup>
         <Content Include="App_Plugins/**" CopyToOutputDirectory="Always" />
         <Content Include="umbraco/**" CopyToOutputDirectory="Always" />
@@ -23,11 +21,14 @@
         <Content Remove="umbraco/mediacache/**" />
     </ItemGroup>
 
-
-
     <ItemGroup>
       <None Include="umbraco\Data\Umbraco.sdf" />
       <None Include="wwwroot\Assets\**" CopyToPublishDirectory="PreserveNewest" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\BlogWebsite.Business\BlogWebsite.Business.csproj" />
+      <ProjectReference Include="..\BlogWebsite.Data\BlogWebsite.Data.csproj" />
     </ItemGroup>
 
     <!-- Set this to true if ModelsBuilder mode is not InMemoryAuto-->
