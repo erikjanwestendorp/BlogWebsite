@@ -1,0 +1,5 @@
+@mixin form-label($name: default) {
+    color: map-get($form-labels, $name, color);
+    font-weight: map-get($form-labels, $name, font-weight);
+    font-size: map-get($form-labels, $name, font-size);
+}

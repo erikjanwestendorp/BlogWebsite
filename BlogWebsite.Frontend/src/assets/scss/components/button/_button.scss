@@ -1,0 +1,152 @@
+%button-reset {
+    display: inline-block;
+    background: none;
+    font: inherit;
+    line-height: 1;
+    letter-spacing: inherit;
+    margin: 0;
+    padding: 0;
+    color: inherit;
+    text-decoration: none;
+    border: 0;
+    outline: none;
+    appearance: none;
+    cursor: pointer;
+    box-shadow: none;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+%button-default {
+    @extend %center-align-flex;
+    display: inline-flex;
+    text-align: $button-text-align;
+    border-style: solid;
+    transition: color $transition-properties, border-color $transition-properties,
+        background-color $transition-properties, opacity $transition-properties, box-shadow $transition-properties;
+    background-clip: padding-box;
+
+    &:disabled,
+    &.disabled {
+        opacity: $button-disabled-opacity;
+    }
+
+    &.loading {
+        @include loader();
+        color: transparent !important;
+    }
+}
+
+@mixin button(
+    $name: null,
+    $parentHoverEl: null,
+    $svg-height: 1em,
+    $svg-width: null,
+    $gutter: $button-icon-gap
+) {
+    @if $name {
+        @include button-raw(
+            $text-color: map-get($buttons, $name, text-color),
+            $text-color-hover: map-get($buttons, $name, text-color-hover),
+            $bg-color: map-get($buttons, $name, bg-color),
+            $bg-color-hover: map-get($buttons, $name, bg-color-hover),
+            $padding: map-get($buttons, $name, padding),
+            $font-size: map-get($buttons, $name, font-size),
+            $font-weight: map-get($buttons, $name, font-weight),
+            $border-radius: map-get($buttons, $name, border-radius),
+            $border-color: map-get($buttons, $name, border-color),
+            $border-color-hover: map-get($buttons, $name, border-color-hover),
+            $border-width: map-get($buttons, $name, border-width),
+            $border-width-hover: map-get($buttons, $name, border-width-hover),
+            $outline-color: map-get($buttons, $name, outline-color),
+            $outline-color-hover: map-get($buttons, $name, outline-color-hover),
+            $outline-width: map-get($buttons, $name, outline-width),
+            $outline-width-hover: map-get($buttons, $name, outline-width-hover),
+            $box-shadow: map-get($buttons, $name, box-shadow),
+            $box-shadow-hover: map-get($buttons, $name, box-shadow-hover),
+            $parentHoverEl: $parentHoverEl
+        );
+    } @else {
+        @extend %button-reset;
+        @extend %button-default;
+    }
+    @include icon-svg-wrapper($svg-height: $svg-height, $svg-width: $svg-width, $gutter: $gutter);
+    flex-direction: row;
+}
+
+@mixin button-raw(
+    $text-color,
+    $text-color-hover,
+    $bg-color,
+    $bg-color-hover,
+    $padding,
+    $font-size,
+    $font-weight,
+    $border-radius,
+    $border-color,
+    $border-color-hover,
+    $border-width,
+    $border-width-hover,
+    $outline-color,
+    $outline-color-hover,
+    $outline-width,
+    $outline-width-hover,
+    $box-shadow,
+    $box-shadow-hover,
+    $parentHoverEl: null
+) {
+    @extend %button-reset;
+    @extend %button-default;
+    background: $bg-color;
+    color: $text-color;
+    fill: $text-color;
+    font-size: $font-size;
+    font-weight: $font-weight;
+    border-radius: $border-radius;
+    border-color: $border-color;
+    border-width: $border-width;
+    border-style: if($border-width, solid, null);
+    outline-color: $outline-color;
+    outline-width: $outline-width;
+    outline-style: if($outline-width, solid, null);
+    padding-top: #{get-side($padding, top) - get-side($border-width, top)};
+    padding-bottom: #{get-side($padding, bottom) - get-side($border-width, bottom)};
+    padding-left: #{get-side($padding, left) - get-side($border-width, left)};
+    padding-right: #{get-side($padding, right) - get-side($border-width, right)};
+    box-shadow: $box-shadow;
+
+    &:hover,
+    &:focus {
+        background: $bg-color-hover;
+        color: $text-color-hover;
+        fill: $text-color-hover;
+        border-color: $border-color-hover;
+        border-width: $border-width-hover;
+        border-style: if($border-width-hover, solid, null);
+        outline-color: $outline-color-hover;
+        outline-width: $outline-width-hover;
+        outline-style: if($outline-width-hover, solid, null);
+        box-shadow: $box-shadow-hover;
+    }
+
+    @if $parentHoverEl {
+        @include parentHover($parentHoverEl) {
+            // TODO: Find a way to extend these properties
+            background: $bg-color-hover;
+            color: $text-color-hover;
+            fill: $text-color-hover;
+            border-color: $border-color-hover;
+            border-width: $border-width-hover;
+            border-style: if($border-width-hover, solid, null);
+            outline-color: $outline-color-hover;
+            outline-width: $outline-width-hover;
+            outline-style: if($outline-width-hover, solid, null);
+        }
+    }
+}

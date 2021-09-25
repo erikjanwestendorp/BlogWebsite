@@ -1,0 +1,206 @@
+@mixin selection(
+    $name: null,
+    $label-padding: 0px,
+    $errorClass: null,
+    $positionLeft: true,
+    $labelTextoverflow: true
+) {
+    $size: map-get($selections, $name, size);
+    $mark-height: map-get($selections, $name, mark-height);
+    $mark-width: map-get($selections, $name, mark-width);
+    $mark-thickness: map-get($selections, $name, mark-thickness);
+    $mark-border-radius: map-get($selections, $name, mark-border-radius);
+    $border-color: map-get($selections, $name, border-color);
+    $border-color-hover: map-get($selections, $name, border-color-hover);
+    $border-radius: map-get($selections, $name, border-radius);
+    $border-width: map-get($selections, $name, border-width);
+    $bg-color: map-get($selections, $name, bg-color);
+    $bg-color-checked: map-get($selections, $name, bg-color-checked);
+    $mark-color: map-get($selections, $name, mark-color);
+    $mark-bg-color: map-get($selections, $name, mark-bg-color);
+    $label-font-weight-hover: map-get($selections, $name, label-font-weight-hover);
+    $space-between: map-get($selections, $name, space-between);
+
+    input[type="checkbox"],
+    input[type="radio"] {
+        display: none;
+
+        &:not(:checked) + label::after {
+            opacity: 0;
+        }
+
+        &:checked + label {
+            font-weight: $label-font-weight-hover;
+            &::before {
+                background-color: $bg-color-checked;
+            }
+        }
+
+        @if $errorClass {
+            &.#{$errorClass} + label::before {
+                @include input-error();
+            }
+        }
+    }
+
+    label {
+        @if $labelTextoverflow {
+            @extend %text-overflow;
+        }
+        
+        position: relative;
+        display: block;
+        cursor: pointer;
+        padding-top: get-side($label-padding, top);
+        padding-bottom: get-side($label-padding, bottom);
+        padding-left: calc(#{get-side($label-padding, left)} + #{if($positionLeft, #{$space-between + $size}, 0px)});
+        padding-right: calc(#{get-side($label-padding, right)} + #{if(not $positionLeft, #{$space-between + $size}, 0px)});
+        margin-bottom: 0;
+        line-height: #{$size - 1};
+        min-height: $size;
+
+        &::before,
+        &::after {
+            content: "";
+            display: inline-block;
+            position: absolute;
+        }
+
+        &::before {
+            top: get-side($label-padding, top);
+            left: if($positionLeft, get-side($label-padding, left), null);
+            right: if(not $positionLeft, get-side($label-padding, right), null);
+            width: $size;
+            height: $size;
+            background-color: $bg-color;
+            border: $border-width solid $border-color;
+            border-radius: $border-radius;
+            transition: all $transition-properties;
+        }
+
+        &::after {
+            top: calc(#{get-side($label-padding, top)} + #{floor(math-div($size - $mark-height, 2))});
+            left: if($positionLeft, #{get-side($label-padding, left) + math-div($size - $mark-width, 2)}, null);
+            right: if(not $positionLeft, #{get-side($label-padding, right) + math-div($size - $mark-width, 2)}, null);
+            width: $mark-width;
+            height: $mark-height;
+            border-left: $mark-thickness solid $mark-color;
+            border-bottom: $mark-thickness solid $mark-color;
+            border-radius: $mark-border-radius;
+            background: $mark-bg-color;
+            transform: rotate(-45deg);
+            transition: opacity $transition-properties;
+        }
+    }
+
+    &:hover label {
+        font-weight: $label-font-weight-hover;
+
+        &::before {
+            border-color: $border-color-hover;
+        }
+    }
+}
+
+@mixin switch($name: default, $label-padding: 0px, $positionLeft: false, $labelTextoverflow: true) {
+    $width: map-get($switches, $name, width);
+    $height: map-get($switches, $name, height);
+    $bg-color-off: map-get($switches, $name, bg-color-off);
+    $bg-color-on: map-get($switches, $name, bg-color-on);
+    $border-radius: map-get($switches, $name, border-radius);
+    $handle-width: map-get($switches, $name, handle-width);
+    $handle-height: map-get($switches, $name, handle-height);
+    $handle-text-color: map-get($switches, $name, handle-text-color);
+    $handle-bg-color-off: map-get($switches, $name, handle-bg-color-off);
+    $handle-bg-color-on: map-get($switches, $name, handle-bg-color-on);
+    $handle-content-off: map-get($switches, $name, handle-content-off);
+    $handle-content-on: map-get($switches, $name, handle-content-on);
+    $handle-font-size: map-get($switches, $name, handle-font-size);
+    $handle-border-radius: map-get($switches, $name, handle-border-radius);
+    $space-between: map-get($switches, $name, space-between);
+
+    input[type="checkbox"],
+    input[type="radio"] {
+        display: none;
+
+        &:checked + label {
+            &::after {
+                content: $handle-content-on;
+                left: if(
+                    $positionLeft,
+                    #{get-side($label-padding, left) + math-div($height - $handle-height, 2)},
+                    null
+                );
+                right: if(
+                    not $positionLeft,
+                    #{get-side($label-padding, right) + math-div($height - $handle-height, 2)},
+                    null
+                );
+                background-color: $handle-bg-color-on;
+            }
+        }
+    }
+
+    label {
+        @if $labelTextoverflow {
+            @extend %text-overflow;
+        }
+
+        position: relative;
+        display: block;
+        cursor: pointer;
+        padding-top: get-side($label-padding, top);
+        padding-bottom: get-side($label-padding, bottom);
+        padding-left: calc(#{get-side($label-padding, left)} + #{if($positionLeft, #{$space-between + $width}, 0px)});
+        padding-right: calc(
+            #{get-side($label-padding, right)} + #{if(not $positionLeft, #{$space-between + $width}, 0px)}
+        );
+        margin-bottom: 0;
+        line-height: #{$height - 1};
+        min-height: $height;
+
+        &::before,
+        &::after {
+            content: "";
+            display: inline-block;
+            position: absolute;
+        }
+
+        &::before {
+            top: get-side($label-padding, top);
+            left: if($positionLeft, get-side($label-padding, left), null);
+            right: if(not $positionLeft, get-side($label-padding, right), null);
+            width: $width;
+            height: $height;
+            background-color: $bg-color-off;
+            border-radius: $border-radius;
+            transition: all $transition-properties;
+        }
+
+        &::after {
+            content: $handle-content-off;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            top: #{get-side($label-padding, top) + floor(math-div($height - $handle-height, 2))};
+            left: if(
+                $positionLeft,
+                #{get-side($label-padding, left) + math-div($height - $handle-height, 2) + ($width - $handle-width)},
+                null
+            );
+            right: if(
+                not $positionLeft,
+                #{get-side($label-padding, right) + math-div($height - $handle-height, 2) + ($width - $handle-width)},
+                null
+            );
+            width: $handle-width;
+            height: $handle-height;
+            border-radius: $handle-border-radius;
+            background: $handle-bg-color-off;
+            color: $handle-text-color;
+            font-size: $handle-font-size;
+            line-height: 1;
+            transition: all $transition-properties;
+        }
+    }
+}

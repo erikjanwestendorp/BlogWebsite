@@ -1,0 +1,27 @@
+@mixin loader($color: $loader-color, $bg-color: transparent, $height: 100px, $hasMinHeight: true, $border-width: 5px, $position: absolute, $position-md: $position) {
+    position: relative;
+    pointer-events: none;
+
+    @if $hasMinHeight {
+        min-height: #{$height * 1.5};
+    }
+
+    &::before {
+        content: "";
+        position: $position;
+        top: calc(50% - #{math-div($height, 2)});
+        left: calc(50% - #{math-div($height, 2)});
+        border-radius: 50%;
+        border: $border-width solid $color;
+        border-top-color: $bg-color;
+        height: $height;
+        width: $height;
+        opacity: 0;
+        animation: spin 1s linear infinite, fadeIn $transition-properties 0.2s forwards;
+        z-index: 5;
+
+        @include max-bp(md) {
+            position: $position-md;
+        }
+    }
+}

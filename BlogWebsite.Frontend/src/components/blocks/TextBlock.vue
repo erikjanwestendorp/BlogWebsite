@@ -2,7 +2,7 @@
   <div class="default">
       <h2 v-if="title">{{title}}</h2>
       <slot></slot>      
-      <a v-if="link" :href="link">{{linkTitle}}</a>
+      <a class="button" v-if="link" :href="link">{{linkTitle}}</a>
   </div>
 </template>
 

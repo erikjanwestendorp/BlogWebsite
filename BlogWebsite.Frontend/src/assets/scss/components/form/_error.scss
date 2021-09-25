@@ -1,0 +1,10 @@
+@mixin form-error() {
+    display: inline-block;
+    color: $form-error-text-color;
+}
+
+@mixin input-error() {
+    color: $input-error-text-color;
+    border-color: $input-error-border-color;
+    background-color: $input-error-bg-color;
+}

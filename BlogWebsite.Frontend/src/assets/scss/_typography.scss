@@ -1,0 +1,125 @@
+/*****************
+ *  FONT FAMILY
+ *****************/
+@mixin font-family-default() {
+    font-family: $font-family-default;
+}
+
+@mixin font-family-heading() {
+    font-family: $font-family-heading;
+}
+
+/*****************
+ *  FONT SIZE
+ *****************/
+@mixin font-size($default: null, $sm: $default) {
+    font-size: $default;
+
+    @include only-bp(md) {
+        font-size: get-average($default, $sm);
+    }
+
+    @include max-bp(sm) {
+        font-size: $sm;
+    }
+}
+
+@mixin font-size-default() {
+    @include font-size($font-size-default, $font-size-default-sm);
+}
+
+@mixin font-size-large() {
+    @include font-size($font-size-large, $font-size-large-sm);
+}
+
+@mixin font-size-small() {
+    font-size: $font-size-small;
+}
+
+/*****************
+ *  FONT WEIGHT
+ *****************/
+@mixin font-weight-default() {
+    font-weight: $font-weight-default;
+}
+
+@mixin font-weight-bold() {
+    font-weight: $font-weight-bold;
+}
+
+@mixin font-weight-light() {
+    font-weight: $font-weight-light;
+}
+
+/*****************
+ *  LINE HEIGHT
+ *****************/
+@mixin line-height-default() {
+    line-height: $line-height-default;
+}
+
+@mixin line-height-font-size-large() {
+    line-height: $line-height-font-size-large;
+}
+
+@mixin line-height-reset($important: false) {
+    line-height: 1 if-important($important);
+}
+
+/*****************
+ *  LETTER SPACING
+ *****************/
+@mixin letter-spacing-default() {
+    letter-spacing: $letter-spacing-default;
+}
+
+@mixin letter-spacing-heading() {
+    letter-spacing: $letter-spacing-heading;
+}
+
+@mixin letter-spacing-reset() {
+    letter-spacing: normal;
+}
+
+/*****************
+ *  HEADINGS
+ *****************/
+%heading-base {
+    word-break: break-word;
+}
+
+@mixin heading($name) {
+    @include heading-raw(
+        $color: map-get($headings, $name, color),
+        $font-family: map-get($headings, $name, font-family),
+        $font-size: map-get($headings, $name, font-size),
+        $font-size-sm: map-get($headings, $name, font-size-sm),
+        $font-weight: map-get($headings, $name, font-weight),
+        $line-height: map-get($headings, $name, line-height),
+        $letter-spacing: map-get($headings, $name, letter-spacing)
+    );
+}
+
+@mixin heading-raw($color, $font-family, $font-size, $font-size-sm, $font-weight, $line-height, $letter-spacing) {
+    @extend %heading-base;
+    color: $color;
+    font-family: $font-family;
+    font-size: $font-size;
+    font-weight: $font-weight;
+    line-height: $line-height;
+    letter-spacing: $letter-spacing;
+
+    @include max-bp(md) {
+        @if $font-size and $font-size-sm {
+            font-size: get-average($font-size, $font-size-sm);
+        }
+    }
+
+    @include max-bp(sm) {
+        font-size: $font-size-sm;
+    }
+}
+
+@mixin heading-subtitle() {
+    display: block;
+}
