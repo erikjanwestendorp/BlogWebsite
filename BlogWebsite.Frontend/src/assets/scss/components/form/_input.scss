@@ -1,0 +1,35 @@
+%input-reset {
+    outline: none;
+    border: none;
+    background: none;
+
+    &::-ms-clear {
+        display: none;
+    }
+}
+
+@mixin input(
+    $name: default,
+    $errorClass: null
+) {
+    @extend %input-reset;
+    width: 100%;
+    color: map-get($inputs, $name, color);
+    background: map-get($inputs, $name, bg-color);
+    font-weight: map-get($inputs, $name, font-weight);
+    border: map-get($inputs, $name, border-width) solid map-get($inputs, $name, border-color);
+    border-radius: map-get($inputs, $name, border-radius);
+    padding: map-get($inputs, $name, padding);
+    transition: all $transition-properties;
+
+    &::placeholder,
+    &:disabled {
+        color: map-get($inputs, $name, placeholder-color);
+    }
+
+    @if $errorClass {
+        &.#{$errorClass} {
+            @include input-error();
+        }
+    }
+}

@@ -1,3 +1,183 @@
-body{
-    font-family: 'Montserrat', sans-serif;
-}
+/* Everything that is added besides extends/includes/functions is custom for this website */
+/*****************
+ *  GENERAL
+ *****************/
+ html,
+ body {
+     @include base-html();
+ }
+ html {
+     @include font-size-default();
+ }
+ body {
+     @include base-body();
+ }
+ section {
+     @include base-section();
+ }
+ b,
+ strong,
+ .bold {
+     @include font-weight-bold();
+ }
+ p {
+     @include base-paragraph();
+     &.text--small {
+         @include font-size-small();
+     }
+ }
+ figure,
+ label {
+     margin-bottom: 0;
+ }
+ img {
+     image-rendering: -moz-crisp-edges;
+     image-rendering: -o-crisp-edges;
+     image-rendering: -webkit-optimize-contrast;
+     image-rendering: crisp-edges;
+     -ms-interpolation-mode: nearest-neighbor;
+     animation: fadeIn $transition-properties forwards;
+     font-weight: normal;
+     font-family: $font-family-default;
+     line-height: 1;
+     color: var(--black-500);
+ }
+ iframe {
+     border: none;
+     width: 100% !important;
+ }
+ ul {
+     padding-left: 20px;
+ }
+ a {
+     @include link();
+ }
+ /*****************
+  *  HEADINGS
+  *****************/
+ @each $heading, $heading-val in $headings {
+     #{$heading} {
+         @include heading($heading);
+         .subtitle {
+             @include heading-subtitle();
+         }
+     }
+ }
+ /*****************
+  *  BUTTONS
+  *****************/
+ .button {
+     @each $button, $button-val in $buttons {
+         @if $button == "primary" {
+             @include button($button);
+             &-icon-only {
+                 @include button-icon-only($button);
+             }
+         }
+         &-#{$button} {
+             @include button($button);
+             &-icon-only {
+                 @include button-icon-only($button);
+             }
+         }
+     }
+     &-link {
+         @extend %button-reset;
+         @include link();
+     }
+ }
+ /*****************
+  *  ICONS
+  *****************/
+ .icon-svg-wrapper {
+     @include icon-svg-wrapper();
+ }
+ /*****************
+  *  FORM
+  *****************/
+ input[type="text"],
+ input[type="password"],
+ input[type="number"],
+ textarea,
+ select {
+     @include input($errorClass: $input-validation-error-class);
+ }
+ .checkbox {
+     @include selection($name: checkbox, $errorClass: $input-validation-error-class);
+ }
+ .radio {
+     @include selection($name: radio, $errorClass: $input-validation-error-class);
+ }
+ .switch {
+     @include switch();
+ }
+ .form-field {
+     @include form-field();
+ }
+ .form-field-wrapper {
+     @include form-field-wrapper();
+ }
+ .form-label {
+     @include form-label();
+ }
+ .form-navigation {
+     @include form-navigation();
+ }
+ .field-validation-error {
+     @include form-error();
+ }
+ /*****************
+  *  GRID
+  *****************/
+ .container {
+     @include container();
+     &-lg {
+         @include container($site-width-lg);
+     }
+     &-md {
+         @include container($site-width-md);
+     }
+ }
+ .row,
+ .grid {
+     @include grid($grid-columns);
+     .container-md &:not([class*='grid-']) {
+         @include grid($grid-columns-md);
+     }
+ }
+ @for $i from 1 through $grid-columns {
+     .col-#{$i} {
+         grid-column-end: span $i;
+     }
+     .grid-#{$i} {
+         grid-template-columns: repeat($i, 1fr);
+     }
+ }
+ @each $bp, $value in $breakpoints {
+     @for $i from 1 through $grid-columns {
+         .col-#{$bp}-#{$i} {
+             @include min-bp($bp) {
+                 grid-column-end: span $i;
+             }
+         }
+         .grid-#{$bp}-#{$i} {
+             @include min-bp($bp) {
+                 grid-template-columns: repeat($i, 1fr);
+             }
+         }
+     }
+ }
+ /*****************
+  *  VUE TRANSITIONS
+  *****************/
+ .fade-enter-active,
+ .fade-leave-active {
+     transition: opacity $transition-properties;
+ }
+ .fade-enter-from,
+ .fade-leave-to {
+     opacity: 0;
+ }
+ /*****************
+  *  CUSTOM
+  *****************/

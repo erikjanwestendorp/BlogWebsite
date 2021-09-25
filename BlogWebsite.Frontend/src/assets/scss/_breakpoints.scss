@@ -1,0 +1,29 @@
+@mixin min-bp($value) {
+    @if map-has-key($breakpoints, $value) {
+        @media (min-width: #{map-get($breakpoints, $value) + 1px}) {
+            @content;
+        }
+    } @else {
+        @media (max-width: $value) {
+            @content;
+        }
+    }
+}
+
+@mixin max-bp($value) {
+    @if map-has-key($breakpoints, $value) {
+        @media (max-width: #{map-get($breakpoints, $value)}) {
+            @content;
+        }
+    } @else {
+        @media (max-width: $value) {
+            @content;
+        }
+    }
+}
+
+@mixin only-bp($bp) {
+    @media (min-width: #{map-get-prev($breakpoints, $bp) + 1px}) and (max-width: #{map-get($breakpoints, $bp)}) {
+        @content;
+    }
+}

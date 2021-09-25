@@ -1,0 +1,294 @@
+@mixin padding($default: null, $md: $default, $sm: $md) {
+    padding: $default;
+
+    @include only-bp(md) {
+        padding: $md;
+    }
+
+    @include max-bp(sm) {
+        padding: $sm;
+    }
+}
+
+@mixin margin($default: null, $md: $default, $sm: $md) {
+    margin: $default;
+
+    @include only-bp(md) {
+        margin: $md;
+    }
+
+    @include max-bp(sm) {
+        margin: $sm;
+    }
+}
+
+@mixin flex-direction($default: null, $md: $default, $sm: $md) {
+    flex-direction: $default;
+
+    @include only-bp(md) {
+        flex-direction: $md;
+    }
+
+    @include max-bp(sm) {
+        flex-direction: $sm;
+    }
+}
+
+%text-overflow {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin line-clamp($lines: 1) {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+@mixin clickableArea($horizontal, $vertical) {
+    position: relative;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: -#{$vertical};
+        bottom: -#{$vertical};
+        left: -#{$horizontal};
+        right: -#{$horizontal};
+    }
+}
+
+@mixin parentHover($parentHoverEl) {
+    @at-root #{$parentHoverEl}:hover#{&} {
+        @content;
+    }
+
+    @at-root #{$parentHoverEl}:hover & {
+        @content;
+    }
+}
+
+@mixin aspect-ratio($resolution-width: 16, $resolution-height: 9) {
+    overflow: hidden;
+    position: relative;
+
+    &::before {
+        content: "";
+        display: block;
+        padding-top: percentage($resolution-height / $resolution-width);
+    }
+}
+
+@mixin aspect-ratio-element() {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+%hide-text {
+    overflow: hidden;
+    text-indent: -9999px;
+    white-space: nowrap;
+    color: transparent;
+}
+
+%block-link {
+    @extend %hide-text;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+%reset-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+%reset-list-item {
+    list-style: inherit;
+    margin: 0;
+
+    &::before {
+        display: none;
+    }
+}
+
+%link-reset {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+%vertical-align-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+%horizontal-align-flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+%center-align-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+%viewport-element {
+    opacity: 0;
+    transform: translateY(50px);
+
+    &.in--viewport {
+        opacity: 1;
+        transform: translateY(0);
+        transition: all $transition-properties;
+    }
+}
+
+%filter-white {
+    filter: brightness(0) invert(1);
+}
+
+@function get-average($var1, $var2) {
+    $max: max($var1, $var2);
+    $min: min($var1, $var2);
+    @return $min + math-div($max - $min, 2);
+}
+
+@function if-important($important) {
+    @return #{if($important, "!important", "")};
+}
+
+@function get-side($val, $side) {
+    $length: length($val);
+
+    @if $length == 1 {
+        @return $val;
+    }
+    @if $length == 2 {
+        @return map-get(
+            (
+                top: nth($val, 1),
+                bottom: nth($val, 1),
+                left: nth($val, 2),
+                right: nth($val, 2),
+            ),
+            $side
+        );
+    }
+    @if $length == 3 {
+        @return map-get(
+            (
+                top: nth($val, 1),
+                left: nth($val, 2),
+                right: nth($val, 2),
+                bottom: nth($val, 3),
+            ),
+            $side
+        );
+    }
+    @if $length == 4 {
+        @return map-get(
+            (
+                top: nth($val, 1),
+                right: nth($val, 2),
+                bottom: nth($val, 3),
+                left: nth($val, 4),
+            ),
+            $side
+        );
+    }
+}
+
+@function math-div($number1, $number2) {
+    @return math.div($number1, $number2);
+}
+
+@function map-get-prev($map, $key, $fallback: false, $return: value, $debug: false) {
+    @if type-of($map) == map {
+        @if $debug {
+            @debug 'Map exists #{$map}';
+        }
+
+        @if map-has-key($map, $key) {
+            @if $debug {
+                @debug 'Map has key #{$key}';
+            }
+
+            $i: 1;
+            $key-index: false;
+            $previous-index: false;
+
+            @each $map-key, $map-value in $map {
+                @if $debug {
+                    @debug 'map-key: #{$map-key}, map-value: #{$map-value}, i: #{$i}';
+                }
+
+                @if $map-key == $key {
+                    $key-index: $i;
+                    @if $debug {
+                        @debug 'found key-index: #{$key-index}';
+                    }
+                }
+
+                $i: $i + 1;
+            }
+
+            @if $key-index != false {
+                $previous-index: $key-index - 1;
+                $i: 1;
+
+                @if $previous-index < 1 {
+                    @warn 'no previous item in map, returning fallback';
+                    @return $fallback;
+                }
+                @else {
+                    @each $map-key, $map-value in $map {
+                         @if $i == $previous-index {
+                            @if $return == 'key' {
+                                @if $debug {
+                                    @debug 'found! returning map-key: #{$map-key}';
+                                }
+                                @return $map-key;
+                            }
+                            @else {
+                                @if $debug {
+                                    @debug 'found! returning map-value: #{$map-value}';
+                                }
+                                @return $map-value;
+                            }
+                        }
+                        $i: $i + 1;
+                    }
+                }
+            }
+            @else {
+                @warn 'No previous map item for key #{$key}';
+                @return $fallback;
+            }
+        }
+        @else {
+            @warn 'No valid key #{$key} in map';
+            @return $fallback;
+        }
+    }
+    @else {
+        @warn 'No valid map';
+        @return $fallback;
+    }
+}

@@ -1,0 +1,72 @@
+@mixin link(
+    $color: inherit, 
+    $color-hover: $color,
+    $underline: true, 
+    $underline-hover: true,
+    $parentHoverEl: null
+) {
+    color: $color;
+    @if $underline {
+        text-decoration: underline;
+    } @else {
+        text-decoration: none;
+    }
+    &:hover {
+        color: $color-hover;
+    }
+    @if $underline-hover {
+        &:hover {
+            text-decoration: underline;
+        }
+        @if $parentHoverEl {
+            @include parentHover($parentHoverEl) {
+                text-decoration: underline;
+            }
+        }
+    } @else {
+        &:hover {
+            text-decoration: none;
+        }
+        @if $parentHoverEl {
+            @include parentHover($parentHoverEl) {
+                text-decoration: none;
+            }
+        }
+    }
+}
+@mixin link-underline-custom(
+    $name: default,
+    $underline-only-hover: false,
+    $activeClass: "active",
+    $parentHoverEl: null
+) {
+    $color: map-get($links-custom, $name, color);
+    $underline-color: map-get($links-custom, $name, underline-color);
+    $underline-hover-color: map-get($links-custom, $name, underline-hover-color);
+    $underline-height: map-get($links-custom, $name, underline-height);
+    $underline-hover-height: map-get($links-custom, $name, underline-hover-height);
+    color: $color;
+    text-decoration: none;
+    transition: all $transition-properties;
+    background-repeat: no-repeat;
+    background-position: 0% 100%;
+    @if not $underline-only-hover {
+        background-image: linear-gradient($underline-color, $underline-color);
+        background-size: 100% $underline-height;
+    }
+    &:hover,
+    &.#{$activeClass} {
+        color: $color;
+        text-decoration: none;
+        background-image: linear-gradient($underline-hover-color, $underline-hover-color);
+        background-size: 100% $underline-hover-height;
+    }
+    @if $parentHoverEl {
+        @include parentHover($parentHoverEl) {
+            color: $color;
+            text-decoration: none;
+            background-image: linear-gradient($underline-hover-color, $underline-hover-color);
+            background-size: 100% $underline-hover-height;
+        }
+    }
+}

@@ -1,0 +1,44 @@
+@mixin base-html() {
+    height: auto;
+    min-height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+    min-height: calc(var(--vh, 1vh) * 100);
+    max-width: 100%;
+}
+
+@mixin base-body($color: $text-color) {
+    @include font-family-default();
+    @include font-weight-default();
+    @include line-height-default();
+    @include letter-spacing-default();
+    overflow-x: hidden;
+    color: $color;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: opacity $transition-properties;
+}
+
+@mixin base-main() {
+    flex: 1 1 auto;
+    position: relative;
+    z-index: 2;
+    transition: all $transition-properties;
+}
+
+@mixin base-section() {
+    position: relative;
+    background-repeat: no-repeat;
+}
+
+@mixin base-paragraph() {
+    @include line-height-default();
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+@mixin base-footer() {
+    position: relative;
+    z-index: 1;
+}

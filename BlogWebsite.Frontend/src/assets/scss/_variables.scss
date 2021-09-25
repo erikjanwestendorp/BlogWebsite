@@ -1,0 +1,286 @@
+/*****************
+*  COLOR VARIABLES
+*  Add/remove/modify as needed
+*****************/
+@function hexToRGB($hex) {
+  @return red($hex), green($hex), blue($hex);
+}
+
+:root {
+  --yellow-500: #ffbd17;
+  --red-500: #be1453;
+  --green-500: #338674;
+  --blue-500: #149bbe;
+  
+  --black-500: #404040;
+  --black-500-rgb: #{hexToRGB(#404040)};
+  --white-500: #ffffff;
+  --white-500-rgb: #{hexToRGB(#ffffff)};
+}
+
+/*****************
+*  COLOR ELEMENTS 
+*  Don't delete rows, only modify values
+*****************/
+$colors: (
+  "blue": var(--blue-500)
+);
+$text-color: var(--black-500);
+$loader-color: var(--black-500);
+
+/*****************
+*  TYPOGRAPHY
+*  Don't delete rows, only modify values
+*****************/
+$font-family-default: "Montserrat", sans-serif;
+
+$font-size-default: 18px;
+$font-size-default-sm: 16px;
+$font-size-large: 18px;
+$font-size-large-sm: 16px;
+$font-size-small: 15px;
+
+$font-weight-default: 400;
+$font-weight-bold: 600;
+$font-weight-regular: 400;
+$font-weight-light: 300;
+
+$line-height-default: 1.56;
+$line-height-font-size-large: 1.56;
+
+$letter-spacing-default: null;
+
+/*****************
+  *  HEADINGS
+  *  Don't delete rows, only modify values
+  *****************/
+$font-family-heading: "Indie Flower", serif;
+$letter-spacing-heading: null;
+
+$headings: (
+  h1: (
+    color: var(--blue-500),
+    font-family: $font-family-heading,
+    font-size: 60px,
+    font-size-sm: 40px,
+    font-weight: 700,
+    line-height: 1.03,
+    letter-spacing: $letter-spacing-heading,
+  )
+);
+
+/*****************
+*  SHADOWS
+*  Don't delete rows, only modify values
+*****************/
+$box-shadow-default: 0 5px 35px -8px rgb(var(--black-500-rgb) / 20%);
+$box-shadow-button: null;
+$box-shadow-button-hover: null;
+$menu-shadow: 0 5px 20px -8px rgb(var(--black-500-rgb) / 20%);
+
+/*****************
+*  BUTTONS
+*  Don't delete rows, only modify values
+*****************/
+$button-text-align: left;
+$button-disabled-opacity: 0.75;
+$button-icon-gap: 12px;
+
+$buttons: (
+  primary: (
+    text-color: var(--blue-500),
+    text-color-hover: var(--blue-500),
+    bg-color: null,
+    bg-color-hover: null,
+    padding: 10px 0,
+    font-size: 16px,
+    font-weight: 600,
+    border-radius: null,
+    border-color: null,
+    border-color-hover: null,
+    border-width: 0px 0px 0px 0px,
+    border-width-hover: 0px 0px 0px 0px,
+    outline-color: null,
+    outline-color-hover: null,
+    outline-width: 0px,
+    outline-width-hover: 0px,
+    box-shadow: $box-shadow-button,
+    box-shadow-hover: $box-shadow-button-hover,
+  )
+);
+
+/*****************
+*  LINKS
+*  Don't delete rows, only modify values
+*****************/
+$links-custom: (
+  default: (
+    color: var(--blue-500),
+    underline-color: null,
+    underline-hover-color: var(--blue-500),
+    underline-height: null,
+    underline-hover-height: 1px,
+  ),
+);
+
+/*****************
+*  ICONS
+*  Don't delete rows, only modify values
+*****************/
+$icon-border-radius: 50%;
+$icon-height: 40px;
+$icon-width: 40px;
+$icon-svg-height: 22px;
+$icon-svg-width: 22px;
+
+/*****************
+*  FORMS
+*  Don't delete rows, only modify values
+*****************/
+$form-labels: (
+  default: (
+    color: var(--blue-500),
+    font-weight: 500,
+    font-size: 18px
+  ),
+);
+
+$inputs: (
+  default: (
+    color: var(--black-500),
+    bg-color: var(--white-500),
+    placeholder-color: rgba(var(--black-500-rgb), 80%),
+    font-weight: 400,
+    border-color: var(--blue-500),
+    border-radius: null,
+    border-width: 0 0 1px 0,
+    padding: 10px 0,
+  )
+);
+
+$selections: (
+  checkbox: (
+    size: 16px,
+    bg-color: var(--white-500),
+    bg-color-checked: null,
+    border-color: var(--black-500),
+    border-color-hover: null,
+    border-width: 1px,
+    border-radius: null,
+    mark-color: var(--black-500),
+    mark-bg-color: null,
+    mark-height: 5px,
+    mark-width: 10px,
+    mark-thickness: 2px,
+    mark-border-radius: null,
+    label-font-weight-hover: null,
+    space-between: 14px,
+  ),
+  radio: (
+    size: 16px,
+    bg-color: var(--white-500),
+    bg-color-checked: null,
+    border-color: var(--black-500),
+    border-color-hover: null,
+    border-width: 1px,
+    border-radius: 50%,
+    mark-color: null,
+    mark-bg-color: var(--black-500),
+    mark-height: 10px,
+    mark-width: 10px,
+    mark-thickness: 0px,
+    mark-border-radius: 50%,
+    label-font-weight-hover: null,
+    space-between: 14px,
+  ),
+);
+
+$switches: (
+  default: (
+    width: 55px,
+    height: 25px,
+    bg-color-off: var(--grey-600),
+    bg-color-on: var(--grey-600),
+    border-radius: 11px,
+    handle-width: 35px,
+    handle-height: 25px,
+    handle-text-color: var(--white-500),
+    handle-bg-color-off: var(--blue-500),
+    handle-bg-color-on: var(--orange-500),
+    handle-content-off: 'uit',
+    handle-content-on: 'aan',
+    handle-font-size: 13px,
+    handle-border-radius: 11px,
+    space-between: 20px
+  )
+);
+
+$form-error-text-color: var(--red-500);
+$input-error-text-color: var(--red-500);
+$input-error-bg-color: null;
+$input-error-border-color: var(--red-500);
+$field-validation-error-class: "field-validation-error";
+$input-validation-error-class: "input-validation-error";
+
+/*****************
+  *  SIZES
+  *  Don't delete rows, only modify values
+  *****************/
+$nav-height: 56px;
+$nav-height-md: 56px;
+$site-width: 1000px;
+$site-width-lg: 900px;
+$site-width-md: 900px;
+$site-padding: 30px;
+
+/*****************
+*  GRID
+*  Don't delete rows, only modify values
+*****************/
+$grid-columns: 12;
+$grid-columns-md: 8;
+$grid-gap: 30px 30px;
+$grid-gap-sm: 30px 30px;
+
+/*****************
+*  BREAKPOINTS
+*  Don't delete rows, only modify values
+*****************/
+$breakpoints: (
+  base: 0px,
+  xs: 480px,
+  sm: 768px,
+  md: 1024px,
+  lg: 1280px,
+  xl: 1440px,
+  site: $site-width + ($site-padding * 2),
+  menu: 1024px
+);
+
+/*****************
+  *  MENU
+  *  Don't delete rows, only modify values
+  *****************/
+$menu-item-active-color: var(--black-500);
+$menuScrolledClass: "scrolled";
+$menuScrolledTopClass: "scrolled--top";
+$menuScrolledBottomClass: "scrolled--bottom";
+$menuItemActiveClass: "active";
+$menuOpenClass: "menu--open";
+$menuOpenTransformDuration: 0s;
+$menuOpenFullHeight: true;
+$menuHamburgerBreakpoint: null;
+
+/*****************
+*  TRANSITIONS
+*  Don't delete rows, only modify values
+*****************/
+$transition-properties: 0.3s ease-in-out;
+$transition-delay: 0.3s;
+
+/*****************
+*  EXTRA
+*  Don't delete rows, only modify values
+*****************/
+$section-devider-width: 50px;
+$section-devider-width-sm: 50px

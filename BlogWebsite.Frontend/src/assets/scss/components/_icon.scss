@@ -1,0 +1,82 @@
+@mixin icon-svg(
+    $svg-height: $icon-svg-height,
+    $svg-width: $icon-svg-width,
+    $svg-fill: null,
+    $svg-fill-hover: null,
+    $parentHoverEl: null
+) {
+    width: $svg-width;
+    height: $svg-height;
+    color: $svg-fill;
+    pointer-events: none;
+
+    &:hover {
+        color: $svg-fill-hover;
+    }
+
+    @if $parentHoverEl {
+        @include parentHover($parentHoverEl) {
+            color: $svg-fill-hover;
+        }
+    }
+}
+
+@mixin icon-svg-wrapper(
+    $height: null,
+    $width: null,
+    $svg-height: $icon-svg-height,
+    $svg-width: $icon-svg-width,
+    $svg-fill: null,
+    $svg-fill-hover: null,
+    $parentHoverEl: null,
+    $gutter: null
+) {
+    height: $height;
+    width: $width;
+
+    .svg-icon,
+    .icon {
+        @include icon-svg(
+            $svg-height: $svg-height,
+            $svg-width: $svg-width,
+            $svg-fill: $svg-fill,
+            $svg-fill-hover: $svg-fill-hover,
+            $parentHoverEl: $parentHoverEl
+        );
+
+        &:not(:only-child) {
+            &:first-child {
+                margin-right: $gutter;
+            }
+
+            &:last-child {
+                margin-left: $gutter;
+            }
+        }
+    }
+}
+
+@mixin icons {
+    display: flex;
+}
+
+@mixin icons-list {
+    @extend %reset-list;
+    display: flex;
+}
+
+@mixin icons-item($gutter: null) {
+    position: relative;
+    margin-right: $gutter;
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+@mixin icons-item-svg {
+}
+
+@mixin icons-item-link {
+    @extend %block-link;
+}

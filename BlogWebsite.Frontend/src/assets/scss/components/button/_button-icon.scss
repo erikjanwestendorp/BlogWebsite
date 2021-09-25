@@ -1,0 +1,16 @@
+%button-icon-only {
+    @include icon-svg-wrapper($height: $icon-height, $width: $icon-width);
+    border-radius: $icon-border-radius;
+    display: inline-flex !important;
+    padding: 0 !important;
+}
+
+@mixin button-icon-only($name: null, $parentHoverEl: null) {
+    @if $name {
+        @include button($name, $parentHoverEl);
+    } @else {
+        @extend %button-reset;
+        @extend %button-default;
+    }
+    @extend %button-icon-only;
+}
