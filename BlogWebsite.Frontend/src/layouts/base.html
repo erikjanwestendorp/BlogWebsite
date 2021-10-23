@@ -14,8 +14,13 @@
   </head>
   <body v-cloak>
     <nav-base>
-        <nav-link name="Home" url="/"></nav-link>
-        <nav-link name="Blokken" url="blokken.html"></nav-link>
+        <nav-item name="Blokken" url="blokken.html"></nav-item>
+        <nav-item name="Over">
+          <nav-sub-item name="Mijn Visie" url="#"></nav-sub-item>
+          <nav-sub-item name="Beautiful Kids" url="#"></nav-sub-item>
+          <nav-sub-item name="Mijn Werk" url="#"></nav-sub-item>
+        </nav-item>
+        <nav-item name="Home" url="/"></nav-item>
     </nav-base>
     
     <header-base image-url="https://via.placeholder.com/300x150" image-alt="image" title="This is a header">

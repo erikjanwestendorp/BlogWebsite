@@ -6,7 +6,7 @@
     {
         if (item.Page is Link link && !string.IsNullOrEmpty(link.Url) && !string.IsNullOrEmpty(link.Name))
         {
-            <nav-link name="@link.Name" url="@link.Url" target="@link.Target"></nav-link>
+            <nav-item name="@link.Name" url="@link.Url" target="@link.Target"></nav-item>
         }
     }
 </nav-base>

@@ -1,6 +1,6 @@
 <template>
   <nav class="nav">
-    <ul class="nav-list">
+    <ul class="nav__list">
       <slot></slot>
     </ul>
   </nav>
@@ -13,5 +13,13 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
+
+.nav{
+  &__list{
+    @extend %reset-list;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
 
 </style>
