@@ -1,0 +1,43 @@
+@mixin nav-menu-hamburger($color: $text-color, $height: 15px, $width: 20px, $bar-height: 2px) {
+    color: $color;
+    display: block;
+    transition: color $transition-properties;
+    outline: none !important;
+        @extend %button-reset;
+        @extend %hide-text;
+        @include clickableArea($horizontal: 10px, $vertical: 15px);
+        overflow: visible;
+        span {
+            display: block;
+            width: $width;
+            height: $bar-height;
+            background-color: $color;
+            &::before,
+            &::after {
+                content: "";
+                position: absolute;
+                height: 100%;
+                left: 0;
+                right: 0;
+                background-color: $color;
+                transition: transform $transition-properties;
+            }
+            &::before {
+                top: -#{math-div(($height - $bar-height), 2)};
+            }
+            &::after {
+                bottom: -#{math-div(($height - $bar-height), 2)};
+            }
+            .#{$menuOpenClass} & {
+                background-color: transparent;
+                &::before {
+                    top: 0;
+                    transform: rotate(45deg);
+                }
+                &::after {
+                    top: 0;
+                    transform: rotate(-45deg);
+                }
+            }
+        }
+}
