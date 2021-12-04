@@ -1,11 +1,14 @@
 <template>
-  <div class="images-block">
+  <Block class="images-block">
       <slot></slot>
-  </div>
+  </Block>
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
+import Block from "./_Block.vue";
+
 export default defineComponent({
+    components: {Block}
 
 });
 </script>
