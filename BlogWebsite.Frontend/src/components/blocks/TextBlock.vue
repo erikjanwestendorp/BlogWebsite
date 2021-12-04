@@ -1,8 +1,8 @@
 <template>
   <div class="default">
-      <h2 v-if="title">{{title}}</h2>
-      <slot></slot>      
-      <a class="button" v-if="link" :href="link">{{linkTitle}}</a>
+      <h2 v-if="title">{{title}}</h2>            
+      <div v-html="text"></div>
+      <!-- <a class="button" v-if="link" :href="link">{{linkTitle}}</a> -->
   </div>
 </template>
 
@@ -11,8 +11,7 @@ import { defineComponent } from "vue";
 export default defineComponent({
   props:{
       title: String,
-      link: String,
-      linkTitle: String,
+      text: String
   }
 });
 </script>
