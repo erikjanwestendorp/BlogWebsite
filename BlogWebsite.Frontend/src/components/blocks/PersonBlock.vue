@@ -1,5 +1,5 @@
 <template>
-  <div class="person">
+  <div class="person-block">
       <img v-if="image" :src="image" :alt="name">
       <h2 v-if="name">{{name}}</h2>            
       <div v-html="text"></div>
@@ -16,6 +16,6 @@ export default defineComponent({
 });
 </script>
 <style lang="scss">
-.person {
+.person-block {
 }
 </style>

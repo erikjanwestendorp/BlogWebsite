@@ -1,5 +1,5 @@
 <template>
-  <div class="link">
+  <div class="link-block">
       <a class="button" v-if="link" :href="link">{{title}}</a>
   </div>
 </template>
@@ -15,6 +15,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.link {
+.link-block {
 }
 </style>

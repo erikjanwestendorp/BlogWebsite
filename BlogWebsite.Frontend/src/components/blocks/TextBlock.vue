@@ -1,5 +1,5 @@
 <template>
-  <div class="default">
+  <div class="text-block">
       <h2 v-if="title">{{title}}</h2>            
       <div v-html="text"></div>
   </div>
@@ -16,6 +16,6 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-.default {
+.text-block {
 }
 </style>
