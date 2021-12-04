@@ -18,30 +18,30 @@ using Umbraco.Extensions;
 
 namespace BlogWebsite.Data.Models.ModelsBuilder
 {
-	/// <summary>File</summary>
-	[PublishedModel("File")]
-	public partial class File : PublishedContentModel
+	/// <summary>Video (Extern)</summary>
+	[PublishedModel("videoExternComponent")]
+	public partial class VideoExternComponent : PublishedElementModel, IComponentComposition
 	{
 		// helpers
 #pragma warning disable 0109 // new is redundant
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.1.1+b58a0cf0a5b3b695f09b8884a704d2264b32e253")]
-		public new const string ModelTypeAlias = "File";
+		public new const string ModelTypeAlias = "videoExternComponent";
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.1.1+b58a0cf0a5b3b695f09b8884a704d2264b32e253")]
-		public new const PublishedItemType ModelItemType = PublishedItemType.Media;
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.1.1+b58a0cf0a5b3b695f09b8884a704d2264b32e253")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
 		public new static IPublishedContentType GetModelContentType(IPublishedSnapshotAccessor publishedSnapshotAccessor)
 			=> PublishedModelUtility.GetModelContentType(publishedSnapshotAccessor, ModelItemType, ModelTypeAlias);
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.1.1+b58a0cf0a5b3b695f09b8884a704d2264b32e253")]
 		[return: global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<File, TValue>> selector)
+		public static IPublishedPropertyType GetModelPropertyType<TValue>(IPublishedSnapshotAccessor publishedSnapshotAccessor, Expression<Func<VideoExternComponent, TValue>> selector)
 			=> PublishedModelUtility.GetModelPropertyType(GetModelContentType(publishedSnapshotAccessor), selector);
 #pragma warning restore 0109
 
 		private IPublishedValueFallback _publishedValueFallback;
 
 		// ctor
-		public File(IPublishedContent content, IPublishedValueFallback publishedValueFallback)
+		public VideoExternComponent(IPublishedElement content, IPublishedValueFallback publishedValueFallback)
 			: base(content, publishedValueFallback)
 		{
 			_publishedValueFallback = publishedValueFallback;
@@ -50,26 +50,34 @@ namespace BlogWebsite.Data.Models.ModelsBuilder
 		// properties
 
 		///<summary>
-		/// Size: in bytes
-		///</summary>
-		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.1.1+b58a0cf0a5b3b695f09b8884a704d2264b32e253")]
-		[ImplementPropertyType("umbracoBytes")]
-		public virtual long UmbracoBytes => this.Value<long>(_publishedValueFallback, "umbracoBytes");
-
-		///<summary>
-		/// Type
+		/// Placeholder: Kies een placeholder afbeelding voor de video.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.1.1+b58a0cf0a5b3b695f09b8884a704d2264b32e253")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("umbracoExtension")]
-		public virtual string UmbracoExtension => this.Value<string>(_publishedValueFallback, "umbracoExtension");
+		[ImplementPropertyType("placeholder")]
+		public virtual global::Umbraco.Cms.Core.Models.MediaWithCrops Placeholder => this.Value<global::Umbraco.Cms.Core.Models.MediaWithCrops>(_publishedValueFallback, "placeholder");
 
 		///<summary>
-		/// File
+		/// Video URL: Voeg een URL van bijvoorbeeld YouTube/Vimeo toe.
 		///</summary>
 		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.1.1+b58a0cf0a5b3b695f09b8884a704d2264b32e253")]
 		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
-		[ImplementPropertyType("umbracoFile")]
-		public virtual string UmbracoFile => this.Value<string>(_publishedValueFallback, "umbracoFile");
+		[ImplementPropertyType("video")]
+		public virtual string Video => this.Value<string>(_publishedValueFallback, "video");
+
+		///<summary>
+		/// Actief: Geef aan of dit component actief moet zijn.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.1.1+b58a0cf0a5b3b695f09b8884a704d2264b32e253")]
+		[ImplementPropertyType("active")]
+		public virtual bool Active => global::BlogWebsite.Data.Models.ModelsBuilder.ComponentComposition.GetActive(this, _publishedValueFallback);
+
+		///<summary>
+		/// Anchor: Optioneel. Gebruik dit veld om een anchorpunt op dit component toe te voegen. Vanuit een link kan met behulp van de #-notatie worden verwezen naar dit component. Moet uniek zijn op een pagina.
+		///</summary>
+		[global::System.CodeDom.Compiler.GeneratedCodeAttribute("Umbraco.ModelsBuilder.Embedded", "9.1.1+b58a0cf0a5b3b695f09b8884a704d2264b32e253")]
+		[global::System.Diagnostics.CodeAnalysis.MaybeNull]
+		[ImplementPropertyType("anchor")]
+		public virtual string Anchor => global::BlogWebsite.Data.Models.ModelsBuilder.ComponentComposition.GetAnchor(this, _publishedValueFallback);
 	}
 }

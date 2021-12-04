@@ -1,7 +1,7 @@
 ﻿@using Umbraco.Cms.Core.Models;
 @model BlogWebsite.Business.Features.Shared.Components.Navigation.NavigationViewModel
 
-<nav-base>
+<nav-base home-url="@Model.Home?.Url()" home-name="@Model.Home?.Title">
     @foreach (var item in Model.Items)
     {
         if (item.Page is Link link && !string.IsNullOrEmpty(link.Url) && !string.IsNullOrEmpty(link.Name))
@@ -9,4 +9,4 @@
             <nav-item name="@link.Name" url="@link.Url" target="@link.Target"></nav-item>
         }
     }
-</nav-base>
+</nav-base> 
