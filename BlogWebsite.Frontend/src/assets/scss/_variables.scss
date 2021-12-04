@@ -66,6 +66,15 @@ $headings: (
     font-weight: 700,
     line-height: 1.03,
     letter-spacing: $letter-spacing-heading,
+  ),
+  h2: (
+    color: var(--black-500),
+    font-family: $font-family-heading,
+    font-size: 26px,
+    font-size-sm: 26px,
+    font-weight: 600,
+    line-height: 1,
+    letter-spacing: $letter-spacing-heading,
   )
 );
 
@@ -228,9 +237,9 @@ $input-validation-error-class: "input-validation-error";
   *****************/
 $nav-height: 56px;
 $nav-height-md: 56px;
-$site-width: 1000px;
-$site-width-lg: 900px;
-$site-width-md: 900px;
+$site-width: 800px;
+$site-width-lg: 1000px;
+$site-width-md: 1000px;
 $site-padding: 30px;
 
 /*****************

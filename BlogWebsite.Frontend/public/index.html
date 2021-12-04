@@ -1,7 +1,11 @@
 {% extends "src/layouts/base.html" %}
 {% set documentTitle = 'Index' %}
 {% block content %}
-    <text-block title="This is a title" text="hallo <strong>Mike</strong>"></text-block>
+    <text-block 
+        title="This is a title" 
+        text="hallo <strong>Mike</strong> <ul><li>Item 1</li><li>Item 2</li><li>Item 3</li></ul>"
+        :colors="{ 'titleColor' : 'blue', 'listColor' : 'blue'}">        
+    </text-block>
     <link-block title="This is a link" link="/blokken"></link-block>
     <person-block name="Mike Mijnheer" image="https://via.placeholder.com/300x150" text="I'm Mike <strong>Mijnheer</strong>"></person-block>
     <images-block>
