@@ -31,19 +31,25 @@ export default defineComponent({
 .text-block {
   &__title{
     margin-bottom: 20px;
-    .text-block.title--blue & {
-        color: var(--blue-500);
-      }
+    @each $color,$value in $colors {
+        .text-block.title--#{$color} & {
+          color: $value; 
+        }
+    }    
   }
   &__text{
     ul,ol{
-      .text-block.list--blue & {
-        color: var(--blue-500);
+      @each $color,$value in $colors {
+        .text-block.list--#{$color} & {
+          color: $value; 
+        }
       }
     }
     a{
-      .text-block.link--blue &{
-        color: var(--blue-500);
+       @each $color,$value in $colors {
+        .text-block.link--#{$color} & {
+          color: $value; 
+        }
       }
     }
   }  
