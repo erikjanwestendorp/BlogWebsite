@@ -17,6 +17,7 @@ namespace BlogWebsite.Business.Features.Shared.Components.Navigation
         {
             return View(new NavigationViewModel
             {
+                Home = _navigationService.GetHome(),
                 Items = _navigationService.GetNavigation()
             });
         }
