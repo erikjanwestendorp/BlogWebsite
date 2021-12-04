@@ -1,7 +1,6 @@
 <template>
-  <Block class="text-block">
-      <h2 v-if="title">{{title}}</h2>            
-      <div v-html="text"></div>
+  <Block class="link-block">
+      <a class="button" v-if="link" :href="link">{{title}}</a>
   </Block>
 </template>
 
@@ -11,13 +10,14 @@ import Block from "./_Block.vue";
 export default defineComponent({
   props:{
       title: String,
-      text: String
+      link: String
   },
   components: {Block}
+
 });
 </script>
 
 <style lang="scss">
-.text-block {
+.link-block {
 }
 </style>
