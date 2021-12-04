@@ -3,6 +3,7 @@
       <img v-if="image" :src="image" :alt="alt">
   </Element>
 </template>
+
 <script lang="ts">
 import { defineComponent } from "vue";
 import Element from "./_Element.vue";
@@ -14,6 +15,7 @@ export default defineComponent({
   components: {Element}
 });
 </script>
+
 <style lang="scss">
 .image-element {
 }
